@@ -62,3 +62,28 @@ $(document).ready(function() {
         }
     });
 });
+
+(function(){
+    // Initialize EmailJS with your user ID
+    emailjs.init("ZOJ9r7DugBTF5Qryo"); // Replace with your actual EmailJS User ID
+})();
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Collect form data
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    // Send email using EmailJS
+    emailjs.send("service_ra9mi4e", "template_ywkccxg", {
+        name: name,
+        email: email,
+        message: message,
+    })
+    .then(function(response) {
+        alert("Message sent successfully!");
+    }, function(error) {
+        alert("Failed to send message. Please try again later.");
+    });
+});
